@@ -26,7 +26,7 @@ class B implements MyInterface{
     }
 }
 
-public class Main {
+public class Main1 {
     public static void main(String[] args) {
         MyInterface a=new B();
         a.display();
