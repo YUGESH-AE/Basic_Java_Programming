@@ -18,6 +18,10 @@ public class MapHash {
             System.out.print(me.getKey() + ":");
             System.out.println(me.getValue());
         }
+
+        for(Map.Entry<String,Integer>ma:hm.entrySet()){
+            System.out.println(ma);
+        }
     }
 }
 
