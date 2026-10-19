@@ -1,0 +1,17 @@
+The complete Collectors learning map
+We'll cover the methods in the following order.
+Section	Methods
+A. Basic collection	toList(), toSet(), toCollection()
+B. Unmodifiable collections	toUnmodifiableList(), toUnmodifiableSet(), toUnmodifiableMap()
+C. Maps	All toMap() overloads
+D. Grouping	All groupingBy() overloads
+E. Partitioning	All partitioningBy() overloads
+F. String aggregation	All joining() overloads
+G. Counting and numerical aggregation	counting(), summingInt(), summingLong(), summingDouble(), averagingInt(), averagingLong(), averagingDouble()
+H. Statistics	summarizingInt(), summarizingLong(), summarizingDouble()
+I. Minimum and maximum	minBy(), maxBy()
+J. Downstream transformations	mapping(), filtering(), flatMapping()
+K. Finishing and reduction	collectingAndThen(), reducing()
+L. Multiple aggregations	teeing()
+M. Concurrent collectors	toConcurrentMap(), groupingByConcurrent()
+N. Custom collectors	The Collector interface and its components
