@@ -15,3 +15,20 @@ K. Finishing and reduction	collectingAndThen(), reducing()
 L. Multiple aggregations	teeing()
 M. Concurrent collectors	toConcurrentMap(), groupingByConcurrent()
 N. Custom collectors	The Collector interface and its components
+
+
+
+downstream transformations
+Our complete downstream collectors roadmap
+Order	Collector methods	Purpose
+1	counting()	Count elements in each group
+2	summingInt(), summingLong(), summingDouble()	Calculate sums
+3	averagingInt(), averagingLong(), averagingDouble()	Calculate averages
+4	summarizingInt(), summarizingLong(), summarizingDouble()	Get count, sum, min, average, and max together
+5	minBy(), maxBy()	Find minimum and maximum elements
+6	mapping()	Transform elements before collecting
+7	filtering()	Filter elements inside a group (Java 9+)
+8	flatMapping()	Flatten nested streams before collecting (Java 9+)
+9	collectingAndThen()	Apply a final transformation to a collector's result
+10	reducing()	Combine elements into a single result
+11	teeing()	Run two collectors and combine their results (Java 12+)
