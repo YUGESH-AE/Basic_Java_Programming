@@ -170,4 +170,23 @@ public class ObjectBased {
 
 
     }
+
+    public static Optional<String> findDepartmentWithMostHighEarners(
+            List<Employee> employees){
+        return
+                employees
+                        .stream()
+                        .filter(e->e.salary()>50000)
+                        .collect(
+                                Collectors.groupingBy(
+                                        Employee::department,
+                                        Collectors.counting()
+                                )
+                        ).entrySet()
+                        .stream()
+                        .max(Map.Entry.comparingByValue())
+                        .map(Map.Entry::getKey);
+    }
+
+
 }
