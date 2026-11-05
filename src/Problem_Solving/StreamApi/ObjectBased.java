@@ -1,9 +1,6 @@
 package Problem_Solving.StreamApi;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -186,6 +183,53 @@ public class ObjectBased {
                         .stream()
                         .max(Map.Entry.comparingByValue())
                         .map(Map.Entry::getKey);
+    }
+    public static Optional<String> findDepartmentWithHighestSalaryDifference(
+            List<Employee> employees){
+       return employees
+               .stream()
+               .collect(
+                       Collectors.groupingBy(
+                               Employee::department,
+                               Collectors.summarizingInt(Employee::salary)
+                       )
+               )
+               .entrySet()
+               .stream()
+               .max(
+                       Comparator.comparingInt(
+                               entry->entry.getValue().getMax()-
+                                       entry.getValue().getMin()
+                       )
+               )
+               .map(Map.Entry::getKey);
+    }
+
+    public static List<Employee> findEmployeesEarningMoreThanHighestSalaryInHR(
+            List<Employee> employees) {
+
+        // Your solution
+        OptionalInt highSal = employees.stream()
+                .filter(e -> e.department().equalsIgnoreCase("HR"))
+                .mapToInt(Employee::salary)
+                .max();
+
+        if (highSal.isEmpty()) {
+            return List.of();
+        }
+
+        return employees.stream()
+                .filter(e -> e.salary() > highSal.getAsInt())
+                .toList();
+    }
+
+    public static List<String> findDepartmentsWithSecondHighestHighEarners(
+            List<Employee> employees) {
+
+        // Your solution
+
+       return null;
+
     }
 
 
