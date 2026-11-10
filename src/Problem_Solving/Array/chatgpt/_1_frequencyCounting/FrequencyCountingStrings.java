@@ -105,7 +105,7 @@ public class FrequencyCountingStrings {
 
      public static String commonCharacters(String s1, String s2) {
         StringBuilder sb=new StringBuilder();
-        
+
         String max;
         String min;
         int maxLength=0,minLength=0;
@@ -119,14 +119,14 @@ public class FrequencyCountingStrings {
             max=s2;
             minLength=s1.length();
             min=s1;
-            
+
         }
 
         Map<Character,Integer>map=new HashMap<>();
         for(int i=0;i<maxLength;i++){
             map.put(max.charAt(i),map.getOrDefault(max.charAt(i),0)+1);
         }
-        
+
         for(int i=0;i<minLength;i++){
             if(map.containsKey(min.charAt(i))){
                 sb.append(min.charAt(i));
@@ -137,7 +137,7 @@ public class FrequencyCountingStrings {
             }
         }
         return sb.toString();
-        
+
     }
 
      public static boolean canConstruct(String ransomNote, String magazine){

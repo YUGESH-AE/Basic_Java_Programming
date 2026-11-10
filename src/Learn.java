@@ -11,7 +11,35 @@ public class Learn {
 
 
 
+
     }
+    public static char mostFrequentCharacter(String str) {
+
+        if (str == null || str.isEmpty()) {
+            return '*';
+        }
+
+        Map<String, Long> map = Arrays.stream(str.split(""))
+                .collect(Collectors.groupingBy(
+                        Function.identity(),
+                        LinkedHashMap::new,
+                        Collectors.counting()
+                ));
+
+        String result = "";
+        long max = 0;
+
+        for (Map.Entry<String, Long> entry : map.entrySet()) {
+            if (entry.getValue() > max) {
+                max = entry.getValue();
+                result = entry.getKey();
+            }
+        }
+
+        return result.charAt(0);
+    }
+
+
 
 
 

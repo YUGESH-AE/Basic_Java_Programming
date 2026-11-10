@@ -166,5 +166,57 @@ public class FrequencyCountingNumbers {
     }
 
 
+    public static boolean areArraysAnagrams(int[] a, int[] b) {
+
+        if (a == null || b == null || a.length != b.length) {
+            return false;
+        }
+
+        Map<Integer, Integer> map1 = new HashMap<>();
+        Map<Integer, Integer> map2 = new HashMap<>();
+
+        for (int i : a) {
+            map1.put(i, map1.getOrDefault(i, 0) + 1);
+        }
+
+        for (int i : b) {
+            map2.put(i, map2.getOrDefault(i, 0) + 1);
+        }
+
+        for (Map.Entry<Integer, Integer> m : map1.entrySet()) {
+            if (!map2.containsKey(m.getKey())
+                    || !m.getValue().equals(map2.get(m.getKey()))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static int firstRepeatingElement(int[] arr) {
+        Set<Integer>set=new HashSet<>();
+
+        for(int i:arr){
+            if(!set.add(i)){
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    public static Set<Integer> intersection(int[] a, int[] b) {
+        Set<Integer>set1=new HashSet<>();
+        Set<Integer>set2=new HashSet<>();
+        for(int i:a){
+            set1.add(i);
+        }
+
+        for(int i:b){
+            if(!set1.add(i)){
+                set2.add(i);
+            }
+        }
+        return set2;
+    }
 
 }
