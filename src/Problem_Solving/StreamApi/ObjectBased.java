@@ -226,10 +226,52 @@ public class ObjectBased {
     public static List<String> findDepartmentsWithSecondHighestHighEarners(
             List<Employee> employees) {
 
-        // Your solution
+        Map<String, Long> departmentCounts = employees.stream()
+                .filter(e -> e.salary() > 70000)
+                .collect(Collectors.groupingBy(
+                        Employee::department,
+                        Collectors.counting()
+                ));
 
-       return null;
+        long secondHighest = departmentCounts.values().stream()
+                .distinct()
+                .sorted(Comparator.reverseOrder())
+                .skip(1)
+                .findFirst()
+                .orElse(0L);
 
+        return departmentCounts.entrySet().stream()
+                .filter(entry -> entry.getValue() == secondHighest)
+                .map(Map.Entry::getKey)
+                .toList();
+    }
+
+    public static List<Employee> findEmployees(List<Employee> employees) {
+
+        Map<String,Double>departmentAverage=
+                employees.stream()
+                        .collect(
+                                Collectors.groupingBy(
+                                        Employee::department,
+                                        Collectors.averagingDouble(Employee::salary)
+                                )
+                        );
+        Map<String,Double>aboveAverage=
+                departmentAverage
+                        .entrySet()
+                        .stream()
+                        .filter(m->m.getValue()>70000)
+                        .collect(
+                                Collectors.toMap(
+                                        Map.Entry::getKey,
+                                        Map.Entry::getValue
+                                )
+                        );
+
+        return employees.stream()
+                .filter(e -> aboveAverage.containsKey(e.department())
+                        && e.salary() > aboveAverage.get(e.department()))
+                .toList();
     }
 
 

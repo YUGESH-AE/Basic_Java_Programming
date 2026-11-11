@@ -93,4 +93,99 @@ public class TwoPointersNumber {
         }
         return a;
     }
+
+    public static String reverseVowels(String str) {
+
+        char[]chars=str.toCharArray();
+        int left=0,right=str.length()-1;
+
+        while (left<right){
+
+            while (left<right&&!isVowel(chars[left])){
+                left++;
+            }
+            while (left<right&&!isVowel(chars[right])){
+                right--;
+            }
+
+            char temp=chars[left];
+            chars[left]=chars[right];
+            chars[right]=temp;
+            left++;
+            right--;
+        }
+        return new String(chars);
+
+    }
+
+    private static boolean isVowel(char c){
+        return "aeiouAEIOU".indexOf(c)!=-1;
+    }
+
+
+    public static boolean validPalindrome(String str) {
+
+        int left=0,right=str.length()-1;
+
+        while (left<right){
+
+            if(str.charAt(left)!=str.charAt(right)){
+                return isPalindrome(str,left,right-1)
+                        || isPalindrome(str,left+1,right);
+            }
+            left++;
+            right--;
+        }
+        return true;
+
+    }
+
+    public static boolean isPalindrome(String str,int left,int right){
+        while (left<right){
+            if(str.charAt(left)!=str.charAt(right)){
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+
+    public static boolean twoSumTarget(int[]a,int target){
+        int left=0,right=a.length-1;
+
+        while (left<right){
+            int sum=a[left]+a[right];
+
+            if(sum==target){
+                return true;
+            } else if (sum<target) {
+                left++;
+            } else if (sum>target) {
+                right--;
+            }
+        }
+        return false;
+    }
+
+
+
+    public static int[] twoSumIndices(int[] arr, int target) {
+
+        int left=0,right=arr.length-1;
+
+        while (left<right) {
+
+            int sum = arr[left] + arr[right];
+            if (sum == target) {
+                return new int[]{left, right};
+            } else if (sum < target) {
+                left++;
+            } else {
+                right--;
+            }
+
+        }
+        return new int[]{0, 0};
+    }
 }
