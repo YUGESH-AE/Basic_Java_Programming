@@ -9,14 +9,14 @@ public class Learn {
     public static void main(String[] args) {
 
 
-        int[] arr = {1, 2, 4, 6, 8, 9};
-        int target = 10;
-        System.out.println(twoSumTarget(arr,target));
+
 
 
 
 
     }
+
+
     public static char mostFrequentCharacter(String str) {
 
         if (str == null || str.isEmpty()) {

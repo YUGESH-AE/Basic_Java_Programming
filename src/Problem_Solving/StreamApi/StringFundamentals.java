@@ -180,4 +180,70 @@ public class StringFundamentals {
                 .mapToLong(String::length)
                 .count();
     }
+
+    public static Map<Character, Long> countVowels(String input) {
+
+        return Arrays.stream(input.split(""))
+                .map(v->v.charAt(0))
+                .filter(StringFundamentals::isVowel)
+                .collect(
+                        Collectors.groupingBy(
+                                Function.identity(),
+                                Collectors.counting()
+                        )
+                );
+    }
+
+    public static boolean isVowel(char c){
+        return "aeiouAEIOU".indexOf(c)!=-1;
+    }
+
+    public static Map<Character, Long> countAllVowels(String input) {
+
+        Map<Character,Long>vowelMap=new HashMap<>();
+        vowelMap.put('a',0L);
+        vowelMap.put('e',0L);
+        vowelMap.put('i',0L);
+        vowelMap.put('o',0L);
+        vowelMap.put('u',0L);
+        vowelMap.put('A',0L);
+        vowelMap.put('E',0L);
+        vowelMap.put('I',0L);
+        vowelMap.put('O',0L);
+        vowelMap.put('U',0L);
+
+        Arrays.stream(input.split(""))
+                .map(c->c.charAt(0))
+                .filter(StringFundamentals::isVowel)
+                .forEach(v->vowelMap.merge(v,1L,Long::sum));
+
+        return vowelMap;
+
+    }
+
+    public static Optional<Map.Entry<Character, Long>> findMostFrequentCharacter(String input){
+
+       return input.chars()
+               .mapToObj(c->Character.toLowerCase((char)c))
+               .filter(c->!Character.isWhitespace(c))
+               .collect(
+                       Collectors.groupingBy(
+                               Function.identity(),
+                               LinkedHashMap::new,
+                               Collectors.counting()
+                       )
+               ).entrySet()
+               .stream()
+               .max(Comparator.comparing(Map.Entry::getKey));
+    }
+
+    public static String removeDuplicateCharacters(String input){
+
+
+       return Arrays.stream(input.split(""))
+                .distinct()
+               .collect(Collectors.joining());
+
+
+    }
 }
